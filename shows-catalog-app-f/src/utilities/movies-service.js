@@ -31,3 +31,13 @@ export async function searchMovies () {
         console.log('not working')
     }
 }
+
+export async function searchShows () {
+    try {
+        const search_show =await movieApi.searchShows()
+        return search_show
+    }
+    catch {
+        console.log('not working')
+    }
+}

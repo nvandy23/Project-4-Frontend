@@ -5,20 +5,27 @@ import '../assets/Navbar.css';
 // import getTrendingMovies from './movie_api'
 // import getTrendingShows from './movie_api'
 // to
-import { trending, trendingShows,searchMovies } from '../utilities/movies-service';
+import { trending, trendingShows,searchMovies,searchShows } from '../utilities/movies-service';
 import {useState} from 'react'
 
 const Home = () => {
 const [movie, setMovie] =useState(null)
 const [show, setShow] =useState(null)
 const [search_movie, set_search_movie] =useState(null)
+const [search_show,set_search_show] =useState(null)
 
 
-  const handleShowSearch = (e) => {
+ const handleShowSearch = async (e) => {
     e.preventDefault();
+    try {
+      const searchShowData = await searchShows(search_show);
+      set_search_show(searchShowData);
+      console.log(searchShowData);
+    } catch (error) {
+      console.error(error);
+    }
   };
-
-
+  
   const handleMovieSearch = async (e) => {
     e.preventDefault();
     try {
@@ -66,7 +73,7 @@ const [search_movie, set_search_movie] =useState(null)
       <div className="nav-bar">
         <div className="logo">Catalog</div>
         <div className="link-container">
-          <form className="search-form" onSubmit={handleMovieSearch}>
+          <form className="search-form" onSubmit={handleShowSearch}>
             <input type="text" className="search-input" placeholder="Search TV shows" />
             <button type="submit">Search Shows</button>
           </form>

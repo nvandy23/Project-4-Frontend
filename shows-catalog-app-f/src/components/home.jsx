@@ -1,15 +1,13 @@
 import React from 'react';
 import axios from 'axios';
 import '../assets/Navbar.css';
-// Change from
-// import getTrendingMovies from './movie_api'
-// import getTrendingShows from './movie_api'
-// to
 import { trending, trendingShows,searchMovies,searchShows } from '../utilities/movies-service';
 import {useState} from 'react'
+import TrendingShows from './trending_shows';
+import { Link } from 'react-router-dom';
 
 const Home = () => {
-const [movie, setMovie] =useState(null)
+
 const [show, setShow] =useState(null)
 const [search_movie, set_search_movie] =useState(null)
 const [search_show,set_search_show] =useState(null)
@@ -37,15 +35,7 @@ const [search_show,set_search_show] =useState(null)
     }
   };
 
-  const handleMoviesButtonClick = async () => {
-    try {
-     const trendingMovies =  await trending(movie);
-     setMovie(trendingMovies)
-     console.log(trendingMovies)
-    } catch (error) {
-      console.error(error);
-    }
-  };
+  
 
   const handleShowsButtonClick = async () => {
     try {
@@ -81,9 +71,8 @@ const [search_show,set_search_show] =useState(null)
             <input type="text" className="search-input" placeholder="Search Movies" />
             <button type="submit">Search Movies</button>
           </form>
-          <a href="#" className="link">Login</a>
-          <button onClick={handleShowsButtonClick} className="link">Shows</button>
-          <button onClick={handleMoviesButtonClick} className="link">Movies</button>
+          <a href="/" className="link">Login</a>
+          <Link to="/trending-shows" className="link">Shows</Link>
         </div>
       </div>
     </div>

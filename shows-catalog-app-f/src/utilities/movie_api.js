@@ -24,7 +24,7 @@ import config from "../config";
 
  export async function getTrendingShows() {
    try {
-     const response = await fetch('https://api.themoviedb.org/3/trending/tv/day?language=en-US', {
+     const response = await fetch('https://api.themoviedb.org/3/trending/tv/week?language=en-US', {
        method: 'GET',
        headers: {
          accept: 'application/json',

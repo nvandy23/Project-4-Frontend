@@ -41,3 +41,29 @@ export async function searchShows () {
         console.log('not working')
     }
 }
+
+
+
+import axios from 'axios';
+import config from '../config';
+
+
+export async function saveFavorite({ name, genre, rating, description, userId }) {
+  try {
+    const response = await axios.post(
+      `${config.API_URL}/favorites/save`,
+      { name, genre, rating, description, userId },
+      {
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: config.TOKEN,
+        },
+      }
+    );
+
+    return response.data;
+  } catch (error) {
+    console.error(error);
+    throw error;
+  }
+}

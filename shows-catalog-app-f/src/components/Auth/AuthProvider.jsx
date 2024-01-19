@@ -1,5 +1,5 @@
 
-import { Auth0Provider } from "@auth0/auth0-react";
+import { Auth0Provider} from "@auth0/auth0-react";
 import { useNavigate } from "react-router";
 import config from "../../config";
 
@@ -21,9 +21,8 @@ if (!(domain && clientId && redirectUri)) {
   const onRedirectCallback = (appState) => {
     navigate(appState?.returnTo || window.location.pathname);
   
-   
   };
-  
+ 
   return (
     <Auth0Provider
       domain={domain}

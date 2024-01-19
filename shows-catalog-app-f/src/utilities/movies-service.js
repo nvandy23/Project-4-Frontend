@@ -1,5 +1,6 @@
 import * as movieApi from './movie_api'
-
+import axios from 'axios';
+import config from '../config';
 
 export  async function trending () {
     try {
@@ -43,11 +44,6 @@ export async function searchShows () {
 }
 
 
-
-import axios from 'axios';
-import config from '../config';
-
-
 export async function saveFavorite({ name, genre, rating, description, userId }) {
   try {
     const response = await axios.post(
@@ -67,3 +63,25 @@ export async function saveFavorite({ name, genre, rating, description, userId })
     throw error;
   }
 }
+
+
+
+
+export async function getUserFavorites(userId) {
+  try {
+    const response = await axios.get(`${config.API_URL}/favorites/user/${userId}`, {
+      headers: {
+        Authorization: config.TOKEN,
+      },
+    });
+
+    return response.data;
+  } catch (error) {
+    console.error(error);
+    throw error;
+  }
+}
+
+
+  
+

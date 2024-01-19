@@ -25,7 +25,7 @@ const [search_show,set_search_show] =useState(null)
       console.error(error);
     }
   };
-  console.log(isAuthenticated)
+  console.log(user,'is working')
   const handleMovieSearch = async (e) => {
     e.preventDefault();
     try {
@@ -59,7 +59,7 @@ const [search_show,set_search_show] =useState(null)
 //       console.error(error);
 //     }
 //   };
-
+console.log(isLoading)
   return (
     <div>
       <div className="nav-bar">
@@ -73,7 +73,7 @@ const [search_show,set_search_show] =useState(null)
             <input type="text" className="search-input" placeholder="Search Movies" />
             <button type="submit">Search Movies</button>
           </form>
-          {!isLoading ? (
+          { (
           isAuthenticated ? (
             <span>
               <Link to="/profile">Profile</Link> || <LogoutButton />
@@ -81,7 +81,7 @@ const [search_show,set_search_show] =useState(null)
           ) : (
             <LoginButton />
           )
-        ) : null}
+        )}
           <Link to="/trending-shows" className="link">Shows</Link>
         </div>
       </div>

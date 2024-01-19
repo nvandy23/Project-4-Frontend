@@ -20,6 +20,15 @@ const TrendingShowsPage = () => {
 
   return (
     <div>
+              {!isLoading ? (
+          isAuthenticated ? (
+            <span>
+              <Link to="/profile">Profile</Link> || <LogoutButton />
+            </span>
+          ) : (
+            <LoginButton />
+          )
+        ) : null}
       <h2>Trending Shows</h2>
       {trendingShowsData.map((show) => (
         <div key={show.id}>
@@ -27,6 +36,7 @@ const TrendingShowsPage = () => {
           <p>Show Name: {show.name}</p>
           <p>Show Rating: {show.rating}</p>
         </div>
+        
       ))}
     </div>
   );

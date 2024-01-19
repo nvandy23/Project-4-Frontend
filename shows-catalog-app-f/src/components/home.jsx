@@ -3,11 +3,13 @@ import axios from 'axios';
 import '../assets/Navbar.css';
 import { trending, trendingShows,searchMovies,searchShows } from '../utilities/movies-service';
 import {useState} from 'react'
-import TrendingShows from './trending_shows';
 import { Link } from 'react-router-dom';
+import { useAuth0 } from "@auth0/auth0-react";
+import LoginButton from "./Auth/LoginButton";
+import LogoutButton from "./Auth/LogoutButton";
 
 const Home = () => {
-
+const { user, isAuthenticated, isLoading } = useAuth0();
 const [show, setShow] =useState(null)
 const [search_movie, set_search_movie] =useState(null)
 const [search_show,set_search_show] =useState(null)
@@ -23,7 +25,7 @@ const [search_show,set_search_show] =useState(null)
       console.error(error);
     }
   };
-  
+  console.log(isAuthenticated)
   const handleMovieSearch = async (e) => {
     e.preventDefault();
     try {
@@ -35,7 +37,7 @@ const [search_show,set_search_show] =useState(null)
     }
   };
 
-  
+
 
   const handleShowsButtonClick = async () => {
     try {
@@ -71,7 +73,15 @@ const [search_show,set_search_show] =useState(null)
             <input type="text" className="search-input" placeholder="Search Movies" />
             <button type="submit">Search Movies</button>
           </form>
-          <a href="/" className="link">Login</a>
+          {!isLoading ? (
+          isAuthenticated ? (
+            <span>
+              <Link to="/profile">Profile</Link> || <LogoutButton />
+            </span>
+          ) : (
+            <LoginButton />
+          )
+        ) : null}
           <Link to="/trending-shows" className="link">Shows</Link>
         </div>
       </div>

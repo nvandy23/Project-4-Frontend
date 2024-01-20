@@ -2,7 +2,7 @@ import * as movieApi from './movie_api';
 import axios from 'axios';
 import config from '../config';
 
-export const trending = async () => {
+export const trendingMovies = async () => {
   try {
     const movie = await movieApi.getTrendingMovies();
     return movie;

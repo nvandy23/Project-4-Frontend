@@ -1,7 +1,7 @@
 import React from 'react';
 import axios from 'axios';
 import '../assets/Navbar.css';
-import { trending, trendingShows,searchMovies,searchShows } from '../utilities/movies-service';
+import { trendingMovies, trendingShows,searchMovies,searchShows } from '../utilities/movies-service';
 import {useState} from 'react'
 import { Link } from 'react-router-dom';
 import { useAuth0 } from "@auth0/auth0-react";
@@ -56,7 +56,7 @@ const [search_show,set_search_show] =useState(null)
 //      set_search_movie(searchMovie)
 //      console.log(searchMovie)
 //     } catch (error) {
-//       console.error(error);
+//       console.error(error); 
 //     }
 //   };
 console.log(isLoading)
@@ -82,7 +82,8 @@ console.log(isLoading)
             <LoginButton />
           )
         )}
-          <Link to="/trending-shows" className="link">Shows</Link>
+          <Link to="/trending-shows" className="link">Trending Shows</Link>
+          <Link to ="/trending-movies" className="link1">Trending Movies</Link>
         </div>
       </div>
     </div>

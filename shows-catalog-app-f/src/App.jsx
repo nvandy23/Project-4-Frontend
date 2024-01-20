@@ -4,6 +4,8 @@ import TrendingShows  from './components/trending_shows';
 import ShowTVShows from './components/show_shows';
 import ShowMovies from './components/show_movies';
 import Profile from "./components/Profile/pages/Profile";
+import TrendingMoviesPage from "./components/trending_movies";
+
 
 const App = () => (
   <>
@@ -13,6 +15,7 @@ const App = () => (
       <Route path="/shows" element={<ShowTVShows />} />
       <Route path="/movies" element={<ShowMovies />} />
       <Route path="/profile" element={<Profile />} />
+      <Route path="/trending-movies" element={<TrendingMoviesPage/>} />
     </Routes>
   </>
 );

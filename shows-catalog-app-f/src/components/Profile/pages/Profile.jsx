@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useAuth0 } from "@auth0/auth0-react";
-import { Navigate } from "react-router";
+import { Navigate } from "react-router-dom";  
 import { getUserFavorites, deleteFavorite } from "../../../utilities/movies-service";
 
 const Profile = () => {
@@ -28,7 +28,7 @@ const Profile = () => {
       await deleteFavorite(favoriteId);
       setUserFavorites((prevFavorites) => prevFavorites.filter((fav) => fav._id !== favoriteId));
     } catch (error) {
-      console.error('Error deleting favorite', error);
+      console.error('error deleting favorite', error);
     }
   };
 
@@ -48,26 +48,23 @@ const Profile = () => {
         <p>{user.email}</p>
 
         <h2>Your Favorites</h2>
-        {userFavorites.map((favorite) => {
-          console.log('Favorite Details:', favorite);
-
-          return (
-            <div key={favorite._id}>
-              <h3>Favorite Details:</h3>
-              <p>Name: {favorite.name}</p>
-              <p>Genre: {favorite.genre}</p>
-              <p>Rating: {favorite.rating}</p>
-              <p>Description: {favorite.description}</p>
-              <button onClick={() => handleDeleteFavorite(favorite._id)}>Delete</button>
-            </div>
-          );
-        })}
+        {userFavorites.map((favorite) => (
+          <div key={favorite._id}>
+            <h3>Favorite Details:</h3>
+            <p>Name: {favorite.name}</p>
+            <p>Genre: {favorite.media_type}</p>
+            <p>Rating: {favorite.rating}</p>
+            <p>Description: {favorite.description}</p>
+            <button onClick={() => handleDeleteFavorite(favorite._id)}>Delete</button>
+          </div>
+        ))}
       </div>
     )
   );
 };
 
 export default Profile;
+
 
 
 

@@ -65,8 +65,6 @@ export async function saveFavorite({ name, genre, rating, description, userId })
 }
 
 
-
-
 export async function getUserFavorites(userId) {
   try {
     const response = await axios.get(`${config.API_URL}/favorites/user/${userId}`, {
@@ -81,6 +79,22 @@ export async function getUserFavorites(userId) {
     throw error;
   }
 }
+
+
+export async function deleteFavorite(favoriteId) {
+    try {
+      const response = await axios.delete(`${config.API_URL}/favorites/${favoriteId}`, {
+        headers: {
+          Authorization: config.TOKEN,
+        },
+      });
+  
+      return response.data;
+    } catch (error) {
+      console.error(error);
+      throw error;
+    }
+  }
 
 
   

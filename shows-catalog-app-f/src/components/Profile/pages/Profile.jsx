@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useAuth0 } from "@auth0/auth0-react";
 import { Navigate } from "react-router";
-import { getUserFavorites } from "../../../utilities/movies-service"
+import { getUserFavorites,deleteFavorite } from "../../../utilities/movies-service"
 
 const Profile = () => {
   const { user, isAuthenticated, isLoading } = useAuth0();
@@ -21,6 +21,16 @@ const Profile = () => {
 
     fetchUserFavoritesData();
   }, []); 
+
+  const handleDeleteFavorite = async (favoriteId) => {
+    try {
+      console.log('Favorite deleted successfully');
+      await deleteFavorite(favoriteId);
+      setUserFavorites((prevFavorites) => prevFavorites.filter((fav) => fav._id !== favoriteId));
+    } catch (error) {
+      console.error('error deleting favorite',error);
+    }
+  };
 
   if (!isAuthenticated) {
     return <Navigate to="/" />;
@@ -45,6 +55,7 @@ const Profile = () => {
             <p>Genre: {favorite.genre}</p>
             <p>Rating: {favorite.rating}</p>
             <p>Description: {favorite.description}</p>
+            <button onClick={() => handleDeleteFavorite(favorite._id)}>Delete</button>
           </div>
         ))}
       </div>

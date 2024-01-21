@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { useAuth0 } from '@auth0/auth0-react';
-import { useParams } from 'react-router-dom';
+import { useParams, Link } from 'react-router-dom'; // Import Link from react-router-dom
 import { searchShows, saveFavorite } from '../utilities/movies-service';
 
 const ShowTVShows = () => {
-  const { user,isAuthenticated } = useAuth0();
+  const { user, isAuthenticated } = useAuth0();
   const { query } = useParams();
   const [searchResults, setSearchResults] = useState([]);
   const [savedFavorite, setSavedFavorite] = useState(null);
@@ -49,10 +49,22 @@ const ShowTVShows = () => {
 
   return (
     <div>
+      <div>
+        <Link to="/">Home</Link>
+        <Link to="/trending-movies">Trending Movies</Link>
+        <Link to="/profile">Profile</Link>
+      </div>
+
       <h1>TV Show Route</h1>
       {searchResults.map((show) => (
         <div key={show.id}>
           <h3>Show Details:</h3>
+          {show.poster_path && (
+            <img
+              src={`https://image.tmdb.org/t/p/w500${show.poster_path}`}
+              alt={`${show.name} Poster`}
+            />
+          )}
           <p>Show Genre: {show.media_type}</p>
           <p>Show Name: {show.name}</p>
           <p>Show Rating: {show.vote_average}</p>
@@ -60,7 +72,6 @@ const ShowTVShows = () => {
           {isAuthenticated && user && (
             <button onClick={() => handleSaveFavorite(show)}>Save</button>
           )}
-
         </div>
       ))}
 
@@ -78,6 +89,7 @@ const ShowTVShows = () => {
 };
 
 export default ShowTVShows;
+
 
 
 

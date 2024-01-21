@@ -4,7 +4,6 @@ import App from './App.jsx';
 import './assets/index.css';
 import { BrowserRouter as Router } from 'react-router-dom';
 import Auth0ProviderWithNavigate from "./components/Auth/AuthProvider.jsx";
-// test
 const container = document.getElementById("root");
 const root = createRoot(container);
 

@@ -4,7 +4,7 @@ import { useParams } from 'react-router-dom';
 import { searchShows, saveFavorite } from '../utilities/movies-service';
 
 const ShowTVShows = () => {
-  const { user } = useAuth0();
+  const { user,isAuthenticated } = useAuth0();
   const { query } = useParams();
   const [searchResults, setSearchResults] = useState([]);
   const [savedFavorite, setSavedFavorite] = useState(null);
@@ -57,7 +57,10 @@ const ShowTVShows = () => {
           <p>Show Name: {show.name}</p>
           <p>Show Rating: {show.vote_average}</p>
           <p>Show Description: {show.overview}</p>
-          <button onClick={() => handleSaveFavorite(show)}>Save</button>
+          {isAuthenticated && user && (
+            <button onClick={() => handleSaveFavorite(show)}>Save</button>
+          )}
+
         </div>
       ))}
 

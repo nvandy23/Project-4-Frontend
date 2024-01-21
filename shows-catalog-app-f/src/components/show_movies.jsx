@@ -4,7 +4,7 @@ import { useParams } from 'react-router-dom';
 import { searchMovies, saveFavorite } from '../utilities/movies-service';
 
 const ShowMovies = () => {
-  const { user } = useAuth0();
+  const { user ,isAuthenticated } = useAuth0();
   const { query } = useParams();
   const [searchResults, setSearchResults] = useState([]);
   const [savedFavorite, setSavedFavorite] = useState(null);

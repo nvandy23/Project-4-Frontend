@@ -22,7 +22,7 @@ export const trendingShows = async () => {
 
 export const searchMovies = async (query) => {
   try {
-    const search_show = await movieApi.searchMovies(query);
+    const search_show = await movieApi.searchMovies(query );
     return search_show;
   } catch {
     console.log('not working');
@@ -98,6 +98,27 @@ export const deleteFavorite = async (favoriteId) => {
     throw error;
   }
 };
+
+export const updateFavorite = async (favoriteId, updatedData) => {
+    try {
+      const response = await axios.post(
+        `${config.API_URL}/favorites/update/${favoriteId}`,
+        updatedData,
+        {
+          headers: {
+            'Content-Type': 'application/json',
+            Authorization: config.TOKEN,
+          },
+        }
+      );
+  
+      return response.data;
+    } catch (error) {
+      console.error(error);
+      throw error;
+    }
+  };
+
 
 
 

@@ -54,7 +54,9 @@ const TrendingMoviesPage = () => {
           <p>Movie Description: {movie.overview}</p>
           <p>Movie release date: {movie.release_date}</p>
           <img src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`} alt={movie.title} />
-          <button onClick={() => handleSaveFavorite(movie)}>Save</button>
+          {isAuthenticated && user && (
+            <button onClick={() => handleSaveFavorite(movie)}>Save</button>
+          )}
         </div>
       ))}
 

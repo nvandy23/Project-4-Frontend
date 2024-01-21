@@ -26,7 +26,7 @@ const ShowTVShows = () => {
 
   useEffect(() => {
     handleSearchShows();
-  }, []); 
+  }, [query]); 
 
   const handleSaveFavorite = async (show) => {
     try {

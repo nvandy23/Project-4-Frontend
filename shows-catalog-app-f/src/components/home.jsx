@@ -7,6 +7,7 @@ import LogoutButton from "./Auth/LogoutButton";
 const Home = () => {
   const { user, isAuthenticated } = useAuth0();
   const [searchShowQuery, setSearchShowQuery] = useState('');
+  const [searchMovieQuery,setsearchMovieQuery] =useState('')
   const navigate = useNavigate();
 
   const handleSearchQueryChange = (e) => {
@@ -14,12 +15,21 @@ const Home = () => {
     console.log(e.target.value)
   }; 
 
+  const handleSearchMovieQueryChange = (e) => {
+    setsearchMovieQuery(e.target.value);
+    console.log(e.target.value)
+  }
 
   const handleSearchShowSubmit = (e) => {
     e.preventDefault();
     navigate(`/shows/${searchShowQuery}`);
   };
   
+  const handleMovieShowSubmit = (e) => {
+    e.preventDefault();
+    navigate(`/movies/${searchMovieQuery}`);
+  };
+
   return (
     <div>
       <div className="nav-bar">
@@ -35,11 +45,14 @@ const Home = () => {
             />
             <button type="submit">Search Shows</button>
           </form>
-          <form className="search-form">
+          <form className="search-form" onSubmit={handleMovieShowSubmit}>
             <input
               type="text"
               className="search-input"
               placeholder="Search Movies"
+              value={searchMovieQuery}
+              onChange={handleSearchMovieQueryChange}
+
             />
             <button type="submit">Search Movies</button>
           </form>

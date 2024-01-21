@@ -20,9 +20,9 @@ export const trendingShows = async () => {
   }
 };
 
-export const searchMovies = async () => {
+export const searchMovies = async (query) => {
   try {
-    const search_show = await movieApi.searchMovies();
+    const search_show = await movieApi.searchMovies(query);
     return search_show;
   } catch {
     console.log('not working');

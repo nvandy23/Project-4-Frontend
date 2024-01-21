@@ -42,7 +42,7 @@ export const getTrendingShows = async () => {
 
 export const searchMovies = async () => {
   try {
-    const response = await fetch('https://api.themoviedb.org/3/search/movie?query=Oppenheimer&include_adult=false&language=en-US&page=1', {
+    const response = await fetch(`https://api.themoviedb.org/3/search/movie?query=${q}&include_adult=false&language=en-US&page=1`, {
       method: 'GET',
       headers: {
         accept: 'application/json',
@@ -62,7 +62,7 @@ export const searchMovies = async () => {
 
 export const searchShows = async () => {
   try {
-    const response = await fetch('https://api.themoviedb.org/3/search/tv?query=breaking%20bad&include_adult=false&language=en-US&page=1', {
+    const response = await fetch(`https://api.themoviedb.org/3/search/tv?query=${q}&include_adult=false&language=en-US&page=1`, {
       method: 'GET',
       headers: {
         accept: 'application/json',

@@ -67,11 +67,11 @@ console.log(isLoading)
         <div className="link-container">
           <form className="search-form" onSubmit={handleShowSearch}>
             <input type="text" className="search-input" placeholder="Search TV shows" />
-            <button type="submit">Search Shows</button>
+            <Link to="/shows"> <button type="submit">Search Shows</button></Link>
           </form>
           <form className="search-form" onSubmit={handleMovieSearch}>
             <input type="text" className="search-input" placeholder="Search Movies" />
-            <button type="submit">Search Movies</button>
+            <Link to="/movies"> <button type="submit">Search Movies</button></Link>
           </form>
           { (
           isAuthenticated ? (

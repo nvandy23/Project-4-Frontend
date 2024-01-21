@@ -56,7 +56,9 @@ const TrendingShowsPage = () => {
           <p>Show Rating: {show.vote_average}</p>
           <p> Show Description: {show.overview}</p>
           <img src={`https://image.tmdb.org/t/p/w500${show.poster_path}`} alt={show.name} />
+          {isAuthenticated && user && (
           <button onClick={() => handleSaveFavorite(show)}>Save</button>
+          )}
         </div>
       ))}
 

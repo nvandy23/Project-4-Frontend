@@ -29,14 +29,25 @@ export const searchMovies = async () => {
   }
 };
 
-export const searchShows = async () => {
-  try {
-    const search_show = await movieApi.searchShows();
-    return search_show;
-  } catch {
-    console.log('not working');
-  }
-};
+export const searchShows = async (query) => {
+    try {
+      const response = await fetch(`https://api.themoviedb.org/3/search/tv?query=${query}&include_adult=false&language=en-US&page=1`, {
+        method: 'GET',
+        headers: {
+          accept: 'application/json',
+          Authorization: config.TOKEN
+        },
+      });
+  
+      if (response.ok) {
+        const showData = await response.json();
+        return showData;
+      } 
+      
+    } catch (error) {
+      console.error("Didn't fetch");
+    }
+  };
 
 export const saveFavorite = async ({ name, genre, rating, description, userId }) => {
   try {

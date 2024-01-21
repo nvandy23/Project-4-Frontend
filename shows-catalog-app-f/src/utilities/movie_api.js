@@ -60,9 +60,9 @@ export const searchMovies = async () => {
   }
 };
 
-export const searchShows = async () => {
+export const searchShows = async (query) => {
   try {
-    const response = await fetch(`https://api.themoviedb.org/3/search/tv?query=${q}&include_adult=false&language=en-US&page=1`, {
+    const response = await fetch(`https://api.themoviedb.org/3/search/tv?query=${query}&include_adult=false&language=en-US&page=1`, {
       method: 'GET',
       headers: {
         accept: 'application/json',

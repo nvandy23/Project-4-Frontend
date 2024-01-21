@@ -6,18 +6,18 @@ import LogoutButton from "./Auth/LogoutButton";
 
 const Home = () => {
   const { user, isAuthenticated } = useAuth0();
-  const [searchQuery, setSearchQuery] = useState('');
+  const [searchShowQuery, setSearchShowQuery] = useState('');
   const navigate = useNavigate();
 
   const handleSearchQueryChange = (e) => {
-    setSearchQuery(e.target.value);
+    setSearchShowQuery(e.target.value);
     console.log(e.target.value)
   }; 
 
 
-  const handleSearchSubmit = (e) => {
+  const handleSearchShowSubmit = (e) => {
     e.preventDefault();
-    navigate(`/shows/${searchQuery}`);
+    navigate(`/shows/${searchShowQuery}`);
   };
   
   return (
@@ -25,12 +25,12 @@ const Home = () => {
       <div className="nav-bar">
         <div className="logo">Catalog</div>
         <div className="link-container">
-          <form className="search-form" onSubmit={handleSearchSubmit}>
+          <form className="search-form" onSubmit={handleSearchShowSubmit}>
             <input
               type="text"
               className="search-input"
               placeholder="Search TV shows"
-              value={searchQuery}
+              value={searchShowQuery}
               onChange={handleSearchQueryChange}
             />
             <button type="submit">Search Shows</button>

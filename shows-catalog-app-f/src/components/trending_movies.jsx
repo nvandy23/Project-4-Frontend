@@ -2,11 +2,13 @@ import React, { useEffect, useState } from 'react';
 import { trendingMovies } from '../utilities/movies-service';
 import { saveFavorite } from '../utilities/movies-service';
 import { useAuth0 } from "@auth0/auth0-react";
+import {Link} from 'react-router-dom'; 
 
 const TrendingMoviesPage = () => {
   const { user, isAuthenticated, isLoading } = useAuth0();
   const [trendingMoviesData, setTrendingMoviesData] = useState([]); 
   const [savedFavorite, setSavedFavorite] = useState(null);
+  const [isButtonSaved, setIsButtonSaved] = useState(false);
 
   useEffect(() => {
     const fetchTrendingMovies = async () => {
@@ -38,6 +40,7 @@ const TrendingMoviesPage = () => {
       const savedFavorite = await saveFavorite(favoriteData);
       console.log('Favorite saved:', savedFavorite);
       setSavedFavorite(savedFavorite);
+      setIsButtonSaved(true);
     } catch (error) {
       console.error(error);
     }
@@ -45,6 +48,11 @@ const TrendingMoviesPage = () => {
 
   return (
     <div>
+       <div>
+        <Link to="/">Home</Link>
+        <Link to="/trending-shows">Trending Shows</Link>
+        <Link to="/profile">Profile</Link>
+      </div>
       <h2>Trending Movies</h2>
       {trendingMoviesData.map((movie) => (
         <div key={movie.id}>
@@ -55,7 +63,9 @@ const TrendingMoviesPage = () => {
           <p>Movie release date: {movie.release_date}</p>
           <img src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`} alt={movie.title} />
           {isAuthenticated && user && (
-            <button onClick={() => handleSaveFavorite(movie)}>Save</button>
+            <button onClick={() => handleSaveFavorite(movie)} disabled={isButtonSaved}>
+              {isButtonSaved ? 'Saved' : 'Save'}
+            </button>
           )}
         </div>
       ))}
@@ -64,7 +74,6 @@ const TrendingMoviesPage = () => {
         <div>
           <h2>Saved Favorite</h2>
           <p>Name: {savedFavorite.name}</p>
-          <p>Genre: {savedFavorite.genre}</p>
           <p>Rating: {savedFavorite.rating}</p>
           <p>Description: {savedFavorite.description}</p>
         </div>

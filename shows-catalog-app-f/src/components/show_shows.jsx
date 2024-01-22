@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useAuth0 } from '@auth0/auth0-react';
-import { useParams, Link } from 'react-router-dom'; // Import Link from react-router-dom
+import { useParams, Link } from 'react-router-dom'; 
 import { searchShows, saveFavorite } from '../utilities/movies-service';
 
 const ShowTVShows = () => {
@@ -8,6 +8,7 @@ const ShowTVShows = () => {
   const { query } = useParams();
   const [searchResults, setSearchResults] = useState([]);
   const [savedFavorite, setSavedFavorite] = useState(null);
+  const [isButtonSaved, setIsButtonSaved] = useState(false);
 
   const handleSearchShows = async () => {
     try {
@@ -42,6 +43,7 @@ const ShowTVShows = () => {
       const savedFavorite = await saveFavorite(favoriteData);
       console.log('Favorite saved:', savedFavorite);
       setSavedFavorite(savedFavorite);
+      setIsButtonSaved(true);
     } catch (error) {
       console.error(error);
     }
@@ -53,6 +55,7 @@ const ShowTVShows = () => {
         <Link to="/">Home</Link>
         <Link to="/trending-movies">Trending Movies</Link>
         <Link to="/profile">Profile</Link>
+        <Link to ="/trending-shows">Trending shows</Link>
       </div>
 
       <h1>TV Show Route</h1>
@@ -69,8 +72,10 @@ const ShowTVShows = () => {
           <p>Show Name: {show.name}</p>
           <p>Show Rating: {show.vote_average}</p>
           <p>Show Description: {show.overview}</p>
-          {isAuthenticated && user && (
-            <button onClick={() => handleSaveFavorite(show)}>Save</button>
+           {isAuthenticated && user && (
+            <button onClick={() => handleSaveFavorite(show)} disabled={isButtonSaved}>
+              {isButtonSaved ? 'Saved' : 'Save'}
+            </button>
           )}
         </div>
       ))}
@@ -79,7 +84,6 @@ const ShowTVShows = () => {
         <div>
           <h2>Saved Favorite</h2>
           <p>Name: {savedFavorite.name}</p>
-          <p>Genre: {savedFavorite.genre}</p>
           <p>Rating: {savedFavorite.rating}</p>
           <p>Description: {savedFavorite.description}</p>
         </div>

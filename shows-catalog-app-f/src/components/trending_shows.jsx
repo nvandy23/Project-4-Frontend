@@ -2,11 +2,13 @@ import React, { useEffect, useState } from 'react';
 import { trendingShows } from '../utilities/movies-service';
 import { saveFavorite } from '../utilities/movies-service';
 import { useAuth0 } from "@auth0/auth0-react";
+import {Link} from 'react-router-dom'; 
 
 const TrendingShowsPage = () => {
   const { user, isAuthenticated, isLoading } = useAuth0();
   const [trendingShowsData, setTrendingShowsData] = useState([]);
   const [savedFavorite, setSavedFavorite] = useState(null);
+  const [isButtonSaved, setIsButtonSaved] = useState(false);
 
   useEffect(() => {
     const fetchTrendingShows = async () => {
@@ -37,6 +39,7 @@ const TrendingShowsPage = () => {
 
       const savedFavorite = await saveFavorite(favoriteData);
       console.log('Favorite saved:', savedFavorite);
+      setIsButtonSaved(true);
 
 
       setSavedFavorite(savedFavorite);
@@ -47,6 +50,11 @@ const TrendingShowsPage = () => {
 
   return (
     <div>
+        <div>
+        <Link to="/">Home</Link>
+        <Link to="/trending-movies">Trending Movies</Link>
+        <Link to="/profile">Profile</Link>
+      </div>
       <h2>Trending Shows</h2>
       {trendingShowsData.map((show) => (
         <div key={show.id}>
@@ -57,7 +65,9 @@ const TrendingShowsPage = () => {
           <p> Show Description: {show.overview}</p>
           <img src={`https://image.tmdb.org/t/p/w500${show.poster_path}`} alt={show.name} />
           {isAuthenticated && user && (
-          <button onClick={() => handleSaveFavorite(show)}>Save</button>
+           <button onClick={() => handleSaveFavorite(show)} disabled={isButtonSaved}>
+           {isButtonSaved ? 'Saved' : 'Save'}
+         </button>
           )}
         </div>
       ))}
@@ -66,7 +76,6 @@ const TrendingShowsPage = () => {
         <div>
           <h2>Saved Favorite</h2>
           <p>Name: {savedFavorite.name}</p>
-          <p>Genre: {savedFavorite.genre}</p>
           <p>Rating: {savedFavorite.rating}</p>
           <p>Description: {savedFavorite.description}</p>
         </div>

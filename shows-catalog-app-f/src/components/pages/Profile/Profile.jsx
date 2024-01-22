@@ -1,4 +1,4 @@
-// Profile.jsx
+
 
 import React, { useEffect, useState } from "react";
 import { useAuth0 } from "@auth0/auth0-react";
@@ -110,7 +110,6 @@ const Profile = () => {
             {editMode === favorite._id ? (
               <div>
                 <input type="text" value={updatedData.name} placeholder="Enter updated name" onChange={handleChangeName} />
-                <input type="text" value={updatedData.genre} placeholder="Enter updated genre" onChange={handleChangeGenre} />
                 <input type="text" value={updatedData.rating} placeholder ="Enter updated rating" onChange={handleChangeRating} />
                 <input type="text" value={updatedData.description} placeholder="Enter updated description" onChange={handleChangeDescription} />
                 <button onClick={() => handleSaveEdit(favorite._id)}>Save</button>
@@ -118,7 +117,6 @@ const Profile = () => {
             ) : (
               <div>
                 <p>Name: {favorite.name}</p>
-                <p>Genre: {favorite.media_type}</p>
                 <p>Rating: {favorite.rating}</p>
                 <p>Description: {favorite.description}</p>
                 <button onClick={() => handleEditName(favorite._id)}>Edit Favorite</button>

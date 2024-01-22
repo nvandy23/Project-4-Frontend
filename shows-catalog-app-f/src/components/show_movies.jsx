@@ -2,12 +2,14 @@ import React, { useEffect, useState } from 'react';
 import { useAuth0 } from '@auth0/auth0-react';
 import { useParams } from 'react-router-dom';
 import { searchMovies, saveFavorite } from '../utilities/movies-service';
+import { Link} from 'react-router-dom'; 
 
 const ShowMovies = () => {
-  const { user ,isAuthenticated } = useAuth0();
+  const { user, isAuthenticated } = useAuth0();
   const { query } = useParams();
   const [searchResults, setSearchResults] = useState([]);
   const [savedFavorite, setSavedFavorite] = useState(null);
+  const [isButtonSaved, setIsButtonSaved] = useState(false); 
 
   const handleSearchMovies = async () => {
     try {
@@ -43,6 +45,7 @@ const ShowMovies = () => {
       const savedFavorite = await saveFavorite(favoriteData);
       console.log('Favorite saved:', savedFavorite);
       setSavedFavorite(savedFavorite);
+      setIsButtonSaved(true); 
     } catch (error) {
       console.error(error);
     }
@@ -50,6 +53,12 @@ const ShowMovies = () => {
 
   return (
     <div>
+         <div>
+        <Link to="/">Home</Link>
+        <Link to="/trending-movies">Trending Movies</Link>
+        <Link to="/profile">Profile</Link>
+        <Link to ="/trending-shows">Tredning Shows</Link>
+      </div>
       <h1>Movie Show Route</h1>
       {searchResults.map((movie) => (
         <div key={movie.id}>
@@ -60,7 +69,9 @@ const ShowMovies = () => {
           <p>Movie release date: {movie.release_date}</p>
           <img src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`} alt={movie.title} />
           {isAuthenticated && user && (
-            <button onClick={() => handleSaveFavorite(movie)}>Save</button>
+            <button onClick={() => handleSaveFavorite(movie)} disabled={isButtonSaved}>
+              {isButtonSaved ? 'Saved' : 'Save'}
+            </button>
           )}
         </div>
       ))}
@@ -69,7 +80,6 @@ const ShowMovies = () => {
         <div>
           <h2>Saved Favorite</h2>
           <p>Name: {savedFavorite.name}</p>
-          <p>Genre: {savedFavorite.genre}</p>
           <p>Rating: {savedFavorite.rating}</p>
           <p>Description: {savedFavorite.description}</p>
         </div>
@@ -79,4 +89,5 @@ const ShowMovies = () => {
 };
 
 export default ShowMovies;
+
 

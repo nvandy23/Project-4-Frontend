@@ -7,7 +7,8 @@ Check out the app!: [Stream Seek](https://stream-seek-capstone-frontend-pfpu-8pf
 
 My Trello board: [Trello board](https://trello.com/b/AJ18sO4h/project-4).
 
-![Alt text](shows-catalog-app-f/dist/assets/images/profile_show_page.jpg)
+![Alt text](![Alt text](./dist/assets/images/profile_show_page.jpg)
+)
 
 
 

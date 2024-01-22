@@ -1,4 +1,4 @@
-# Stream Seek
+
 
 # Welcome to Stream Seek!
 Stream Seek is a movie and TV show app designed to provide an immersive entertainment experience. Explore a vast collection of movies and TV shows, powered by the TMDb API. Whether you're a cinephile or a TV series enthusiast, Stream Seek has you covered.

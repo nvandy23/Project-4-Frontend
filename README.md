@@ -1,7 +1,6 @@
 # Stream Seek
 
-Welcome to Stream Seek!
-
+# Welcome to Stream Seek!
 Stream Seek is a movie and TV show app designed to provide an immersive entertainment experience. Explore a vast collection of movies and TV shows, powered by the TMDb API. Whether you're a cinephile or a TV series enthusiast, Stream Seek has you covered.
 
 
@@ -10,21 +9,20 @@ Check out the app!: [Stream Seek](https://stream-seek-capstone-frontend-pfpu-8pf
 My Trello board: [Trello board](https://trello.com/b/AJ18sO4h/project-4).
 
 
-Technonologies used:
+# Technonologies used:
 - Node.js
 - Express
 - MonogoDB
 - HTML 5 
 - Tailwind CSS
--CSS 
--Tmdb API
+- CSS 
+- Tmdb API
 - OAuth
 
-Acknowledgements:
+# Acknowledgements:
 I extend my sincere gratitude to the TMDb API for providing a rich source of movie and TV show data, enabling me to create a dynamic and engaging streaming experience.
 
-Icebox Features (Scheduled for Future Implementation):
-
+# Icebox Features (Scheduled for Future Implementation):
 Sort functionality by rating or alphabetical order.
 Ability to like a trending movie or TV show.
 Additional details showing cast and genre for each show or movie.

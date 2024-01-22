@@ -61,7 +61,7 @@ const ShowTVShows = () => {
         <Link to="/trending-shows">Trending shows</Link>
       </div>
 
-      <h1>TV Show Route</h1>
+      <h1 className ="header">Search Results:</h1>
       <div className="card-container">
         {searchResults.map((show) => (
           <div key={show.id} className="card">
@@ -72,13 +72,13 @@ const ShowTVShows = () => {
                 alt={`${show.name} Poster`}
               />
             )}
-            <p>Show Genre: {show.media_type}</p>
-            <p>Show Name: {show.name}</p>
-            <p>Show Rating: {show.vote_average}</p>
-            <p>Show Description: {show.overview}</p>
+
+            <p>Name: {show.name}</p>
+            <p>Rating: {show.vote_average}</p>
+            <p>Description: {show.overview}</p>
             {isAuthenticated && user && (
               <button onClick={() => handleSaveFavorite(show)} disabled={isButtonSaved[show.id]}>
-                {isButtonSaved[show.id] ? 'Saved' : 'Save'}
+                {isButtonSaved[show.id] ? 'Saved to favorites' : 'Save to favorites'}
               </button>
             )}
           </div>

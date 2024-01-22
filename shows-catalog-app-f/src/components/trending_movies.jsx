@@ -56,19 +56,18 @@ const TrendingMoviesPage = () => {
         <Link to="/trending-shows">Trending Shows</Link>
         <Link to="/profile">Profile</Link>
       </div>
-      <h2>Trending Movies</h2>
+      <h1 className = "header">Trending Movies:</h1>
       <div className="card-container">
         {trendingMoviesData.map((movie) => (
           <div key={movie.id} className="card">
-            <h3>Movie Details:</h3>
             <img src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`} alt={movie.title} />
-            <p>Movie Title: {movie.title}</p>
-            <p>Movie Rating: {movie.vote_average}</p>
-            <p>Movie Description: {movie.overview}</p>
-            <p>Movie release date: {movie.release_date}</p>
+            <p>Title: {movie.title}</p>
+            <p>Rating: {movie.vote_average}</p>
+            <p>Description: {movie.overview}</p>
+            <p>Release date: {movie.release_date}</p>
             {isAuthenticated && user && (
               <button onClick={() => handleSaveFavorite(movie)} disabled={isButtonSaved[movie.id]}>
-                {isButtonSaved[movie.id] ? 'Saved' : 'Save'}
+                {isButtonSaved[movie.id] ? 'Saved to favorites' : 'Save to favorites'}
               </button>
             )}
           </div>

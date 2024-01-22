@@ -28,7 +28,6 @@ const TrendingShowsPage = () => {
     try {
       const favoriteData = {
         name: show.name,
-        genre: show.genre,
         rating: show.vote_average,
         description: show.overview,
         type: "tvshow",
@@ -55,18 +54,17 @@ const TrendingShowsPage = () => {
         <Link to="/trending-movies">Trending Movies</Link>
         <Link to="/profile">Profile</Link>
       </div>
-      <h2>Trending Shows</h2>
+      <h1 className ="header">Trending Shows:</h1>
       <div className="card-container">
         {trendingShowsData.map((show) => (
           <div key={show.id} className="card">
             <img src={`https://image.tmdb.org/t/p/w500${show.poster_path}`} alt={show.name} />
-            <p>Show Genre: {show.media_type}</p>
-            <p>Show Name: {show.name}</p>
-            <p>Show Rating: {show.vote_average}</p>
-            <p>Show Description: {show.overview}</p>
+            <p>Name: {show.name}</p>
+            <p>Rating: {show.vote_average}</p>
+            <p>Description: {show.overview}</p>
             {isAuthenticated && user && (
               <button onClick={() => handleSaveFavorite(show)} disabled={isButtonSaved[show.id]}>
-                {isButtonSaved[show.id] ? 'Saved' : 'Save'}
+                {isButtonSaved[show.id] ? 'Saved to favorites' : 'Save to favorites'}
               </button>
             )}
           </div>

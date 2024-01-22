@@ -6,7 +6,7 @@ import { BrowserRouter as Router } from 'react-router-dom';
 import Auth0ProviderWithNavigate from "./components/Auth/AuthProvider.jsx";
 const container = document.getElementById("root");
 const root = createRoot(container);
-// import './src/assets/index.css'; 
+ 
 
 root.render(
   <Router>

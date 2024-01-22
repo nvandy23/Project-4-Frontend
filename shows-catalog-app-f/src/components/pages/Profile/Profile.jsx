@@ -1,10 +1,9 @@
-
-
 import React, { useEffect, useState } from "react";
+import { Link } from 'react-router-dom';
 import { useAuth0 } from "@auth0/auth0-react";
 import { Navigate } from "react-router-dom";  
 import { getUserFavorites, deleteFavorite, updateFavorite } from "../../../utilities/movies-service";
-
+import '../../../assets/index.css'
 const Profile = () => {
   const { user, isAuthenticated, isLoading } = useAuth0();
   const [userFavorites, setUserFavorites] = useState([]);
@@ -99,38 +98,52 @@ const Profile = () => {
   return (
     isAuthenticated && user && (
       <div>
-        <img src={user.picture} alt="" />
-        <h2>{user.name}</h2>
-        <p>{user.email}</p>
+        <div className="nav-bar">
+          <Link to="/">Home</Link>
+          <Link to="/trending-movies">Trending Movies</Link>
+          <Link to="/trending-shows">Trending Shows</Link>
+          <Link to="/profile">Profile</Link>
+        </div>
 
-        <h2>Your Favorites</h2>
-        {userFavorites.map((favorite) => (
-          <div key={favorite._id}>
-            <h3>Favorite Details:</h3>
-            {editMode === favorite._id ? (
-              <div>
-                <input type="text" value={updatedData.name} placeholder="Enter updated name" onChange={handleChangeName} />
-                <input type="text" value={updatedData.rating} placeholder ="Enter updated rating" onChange={handleChangeRating} />
-                <input type="text" value={updatedData.description} placeholder="Enter updated description" onChange={handleChangeDescription} />
-                <button onClick={() => handleSaveEdit(favorite._id)}>Save</button>
-              </div>
-            ) : (
-              <div>
-                <p>Name: {favorite.name}</p>
-                <p>Rating: {favorite.rating}</p>
-                <p>Description: {favorite.description}</p>
-                <button onClick={() => handleEditName(favorite._id)}>Edit Favorite</button>
-                <button onClick={() => handleDeleteFavorite(favorite._id)}>Delete Favorite</button>
-              </div>
-            )}
+        <div className="profile-info">
+          <div>
+            <img src={user.picture} alt="" />
+            <h2>{user.name}</h2>
+            <p>Email: {user.email}</p>
           </div>
-        ))}
+          <h1>Your Favorites:</h1>
+        </div>
+
+        <div className="card-container">
+          {userFavorites.map((favorite) => (
+            <div key={favorite._id} className="card">
+              <h3>Favorite Details:</h3>
+              {editMode === favorite._id ? (
+                <div>
+                  <input type="text" value={updatedData.name} placeholder="Enter updated name" onChange={handleChangeName} />
+                  <input type="text" value={updatedData.rating} placeholder ="Enter updated rating" onChange={handleChangeRating} />
+                  <input type="text" value={updatedData.description} placeholder="Enter updated description" onChange={handleChangeDescription} />
+                  <button onClick={() => handleSaveEdit(favorite._id)}>Save</button>
+                </div>
+              ) : (
+                <div>
+                  <p>Name: {favorite.name}</p>
+                  <p>Rating: {favorite.rating}</p>
+                  <p>Description: {favorite.description}</p>
+                  <button onClick={() => handleEditName(favorite._id)}>Edit Favorite</button>
+                  <button onClick={() => handleDeleteFavorite(favorite._id)}>Delete Favorite</button>
+                </div>
+              )}
+            </div>
+          ))}
+        </div>
       </div>
     )
   );
 };
 
 export default Profile;
+
 
 
 

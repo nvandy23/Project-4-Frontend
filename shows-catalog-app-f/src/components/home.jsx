@@ -1,32 +1,31 @@
+
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useAuth0 } from "@auth0/auth0-react";
 import LoginButton from "./Auth/LoginButton";
 import LogoutButton from "./Auth/LogoutButton";
-import "../src/assets/homepage/NavBar.css";
-
+import "../assets/homepage/NavBar.css";
+import "../assets/homepage/WelcomeContainer.css"; 
 
 const Home = () => {
   const { user, isAuthenticated } = useAuth0();
   const [searchShowQuery, setSearchShowQuery] = useState('');
-  const [searchMovieQuery,setsearchMovieQuery] =useState('')
+  const [searchMovieQuery, setsearchMovieQuery] = useState('')
   const navigate = useNavigate();
 
   const handleSearchQueryChange = (e) => {
     setSearchShowQuery(e.target.value);
-    console.log(e.target.value)
-  }; 
+  };
 
   const handleSearchMovieQueryChange = (e) => {
     setsearchMovieQuery(e.target.value);
-    console.log(e.target.value)
   }
 
   const handleSearchShowSubmit = (e) => {
     e.preventDefault();
     navigate(`/shows/${searchShowQuery}`);
   };
-  
+
   const handleMovieShowSubmit = (e) => {
     e.preventDefault();
     navigate(`/movies/${searchMovieQuery}`);
@@ -54,13 +53,12 @@ const Home = () => {
               placeholder="Search Movies"
               value={searchMovieQuery}
               onChange={handleSearchMovieQueryChange}
-
             />
             <button type="submit">Search Movies</button>
           </form>
           {isAuthenticated && user ? (
             <span>
-              <Link to="/profile"  className="profile-link">Profile</Link> <LogoutButton />
+              <Link to="/profile" className="profile-link">Profile</Link> <LogoutButton />
             </span>
           ) : (
             <LoginButton />
@@ -73,11 +71,23 @@ const Home = () => {
           </Link>
         </div>
       </div>
+
+     
+      <div className="welcome-container">
+        <h1>Welcome to Search Seek!</h1>
+        {isAuthenticated && user ? (
+          <p>Hello, {user.name}! Explore trending shows and movies or check out your profile.</p>
+        ) : (
+          <p>Sign in to save your favorite shows or movies to a collection.</p>
+        )}
+      </div>
+
     </div>
   );
 };
 
 export default Home;
+
 
 
 

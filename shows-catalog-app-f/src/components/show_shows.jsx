@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react';
 import { useAuth0 } from '@auth0/auth0-react';
 import { useParams, Link } from 'react-router-dom';
 import { searchShows, saveFavorite } from '../utilities/movies-service';
+import '../../dist/assets/index.css'; 
+
 
 const ShowTVShows = () => {
   const { user, isAuthenticated } = useAuth0();

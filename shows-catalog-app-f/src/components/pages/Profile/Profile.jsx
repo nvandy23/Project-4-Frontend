@@ -3,7 +3,8 @@ import { Link } from 'react-router-dom';
 import { useAuth0 } from "@auth0/auth0-react";
 import { Navigate } from "react-router-dom";  
 import { getUserFavorites, deleteFavorite, updateFavorite } from "../../../utilities/movies-service";
-import '../../../assets/index.css'
+import '../../../../dist/assets/index.css';    
+
 const Profile = () => {
   const { user, isAuthenticated, isLoading } = useAuth0();
   const [userFavorites, setUserFavorites] = useState([]);
@@ -13,7 +14,7 @@ const Profile = () => {
     genre: "",
     rating: "",
     description: "",
-  });
+  }); 
 
   useEffect(() => {
     const fetchUserFavoritesData = async () => {

@@ -7,6 +7,9 @@ Check out the app!: [Stream Seek](https://stream-seek-capstone-frontend-pfpu-8pf
 
 My Trello board: [Trello board](https://trello.com/b/AJ18sO4h/project-4).
 
+![Alt text](profile_show_page.jpg)
+
+
 
 # Technologies used:
 - Node.js

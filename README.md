@@ -15,7 +15,6 @@ My Trello board: [Trello board](https://trello.com/b/AJ18sO4h/project-4).
 
 ![Alt text](![Alt text](./shows-catalog-app-f/dist/assets/images/Trending_shows_page.png)
 
-
 ![Alt text](![Alt text](./shows-catalog-app-f/dist/assets/images/search_shows.png)
 
 # Technologies used:

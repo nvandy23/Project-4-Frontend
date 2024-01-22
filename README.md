@@ -1,28 +1,35 @@
-
 # Welcome to Stream Seek!
 Stream Seek is a movie and TV show app designed to provide an immersive entertainment experience. Explore a vast collection of movies and TV shows, powered by the TMDb API. Whether you're a cinephile or a TV series enthusiast, Stream Seek has you covered.
 
+## Check out the app!
+[Stream Seek](https://stream-seek-capstone-frontend-pfpu-8pfavd5yi.vercel.app/).
 
-Check out the app!: [Stream Seek](https://stream-seek-capstone-frontend-pfpu-8pfavd5yi.vercel.app/).
+## My Trello board
+[Trello board](https://trello.com/b/AJ18sO4h/project-4).
 
-My Trello board: [Trello board](https://trello.com/b/AJ18sO4h/project-4).
+## Screenshots
+### Profile page
+![Profile page](./shows-catalog-app-f/dist/assets/images/profile_show_page.png)
 
-![Profile page:](![Alt text](./shows-catalog-app-f/dist/assets/images/profile_show_page.png)
+### Title screen
+![Title screen](./shows-catalog-app-f/dist/assets/images/Title_screen.png)
 
-![Title screen:](![Alt text](./shows-catalog-app-f/dist/assets/images/Title_screen.png)
+### Trending movies page
+![Trending movies page](./shows-catalog-app-f/dist/assets/images/Trending_movies_page.png)
 
-![Alt text](![Alt text](./shows-catalog-app-f/dist/assets/images/Trending_movies_page.png)
+### Trending shows page
+![Trending shows page](./shows-catalog-app-f/dist/assets/images/Trending_shows_page.png)
 
-![Alt text](![Alt text](./shows-catalog-app-f/dist/assets/images/Trending_shows_page.png)
+### Search shows
+![Search shows](./shows-catalog-app-f/dist/assets/images/search_shows.png)
 
-![Alt text](![Alt text](./shows-catalog-app-f/dist/assets/images/search_shows.png)
-
-![Alt text](![Alt text](./shows-catalog-app-f/dist/assets/images/search_movies.png)
+### Search movies
+![Search movies](./shows-catalog-app-f/dist/assets/images/search_movies.png)
 
 # Technologies used:
 - Node.js
 - Express
-- MonogoDB
+- MongoDB
 - HTML 5 
 - CSS 
 - TMDB API
@@ -34,8 +41,5 @@ I extend my sincere gratitude to the TMDb API for providing a rich source of mov
 # Icebox Features (Scheduled for Future Implementation):
 - Sort functionality by rating or alphabetical order.
 - Ability to like a trending movie or TV show.
-- Additional details showing cast and genre for each show or movie.
-- Mobile responsiveness
-
-Explore, discover, and enjoy a seamless streaming experience with Stream Seek!
+- Additional details 
 

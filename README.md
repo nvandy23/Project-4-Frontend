@@ -41,5 +41,6 @@ I extend my sincere gratitude to the TMDb API for providing a rich source of mov
 # Icebox Features (Scheduled for Future Implementation):
 - Sort functionality by rating or alphabetical order.
 - Ability to like a trending movie or TV show.
-- Additional details 
+- Mobile responsiveness
+- Display additional details on each card. (Ex: Cast)
 

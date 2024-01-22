@@ -3,6 +3,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { useAuth0 } from "@auth0/auth0-react";
 import LoginButton from "./Auth/LoginButton";
 import LogoutButton from "./Auth/LogoutButton";
+import '../assets/homepage/NavBar.css'; 
 
 const Home = () => {
   const { user, isAuthenticated } = useAuth0();
@@ -33,7 +34,7 @@ const Home = () => {
   return (
     <div>
       <div className="nav-bar">
-        <div className="logo">Catalog</div>
+        <div className="logo">Search Seek</div>
         <div className="link-container">
           <form className="search-form" onSubmit={handleSearchShowSubmit}>
             <input
@@ -58,7 +59,7 @@ const Home = () => {
           </form>
           {isAuthenticated && user ? (
             <span>
-              <Link to="/profile">Profile</Link> || <LogoutButton />
+              <Link to="/profile"  className="profile-link">Profile</Link> <LogoutButton />
             </span>
           ) : (
             <LoginButton />

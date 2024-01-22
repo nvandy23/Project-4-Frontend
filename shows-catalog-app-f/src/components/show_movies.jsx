@@ -1,15 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import { useAuth0 } from '@auth0/auth0-react';
-import { useParams } from 'react-router-dom';
+import { useParams, Link } from 'react-router-dom';
 import { searchMovies, saveFavorite } from '../utilities/movies-service';
-import { Link} from 'react-router-dom'; 
 
 const ShowMovies = () => {
   const { user, isAuthenticated } = useAuth0();
   const { query } = useParams();
   const [searchResults, setSearchResults] = useState([]);
-  const [savedFavorite, setSavedFavorite] = useState(null);
-  const [isButtonSaved, setIsButtonSaved] = useState(false); 
+  const [savedFavorites, setSavedFavorites] = useState([]); 
+  const [isButtonSaved, setIsButtonSaved] = useState({}); 
 
   const handleSearchMovies = async () => {
     try {
@@ -44,8 +43,11 @@ const ShowMovies = () => {
 
       const savedFavorite = await saveFavorite(favoriteData);
       console.log('Favorite saved:', savedFavorite);
-      setSavedFavorite(savedFavorite);
-      setIsButtonSaved(true); 
+      setSavedFavorites((prevFavorites) => [...prevFavorites, savedFavorite]);
+      setIsButtonSaved((prevButtonStatus) => ({
+        ...prevButtonStatus,
+        [movie.id]: true, 
+      }));
     } catch (error) {
       console.error(error);
     }
@@ -53,37 +55,39 @@ const ShowMovies = () => {
 
   return (
     <div>
-         <div>
+       <div className="nav-bar">
         <Link to="/">Home</Link>
         <Link to="/trending-movies">Trending Movies</Link>
         <Link to="/profile">Profile</Link>
-        <Link to ="/trending-shows">Tredning Shows</Link>
+        <Link to="/trending-shows">Trending Shows</Link>
       </div>
       <h1>Movie Show Route</h1>
+      <div className="card-container">
       {searchResults.map((movie) => (
-        <div key={movie.id}>
+        <div key={movie.id} className='card'>
           <h3>Movie Details:</h3>
+          <img src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`} alt={movie.title} />
           <p>Movie Title: {movie.title}</p>
           <p>Movie Rating: {movie.vote_average}</p>
           <p>Movie Description: {movie.overview}</p>
           <p>Movie release date: {movie.release_date}</p>
-          <img src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`} alt={movie.title} />
           {isAuthenticated && user && (
-            <button onClick={() => handleSaveFavorite(movie)} disabled={isButtonSaved}>
-              {isButtonSaved ? 'Saved' : 'Save'}
+            <button onClick={() => handleSaveFavorite(movie)} disabled={isButtonSaved[movie.id]}>
+              {isButtonSaved[movie.id] ? 'Saved' : 'Save'}
             </button>
           )}
         </div>
+      
       ))}
-
-      {savedFavorite && (
-        <div>
+ </div>
+      {savedFavorites.map((savedFavorite) => (
+        <div key={savedFavorite.id}>
           <h2>Saved Favorite</h2>
           <p>Name: {savedFavorite.name}</p>
           <p>Rating: {savedFavorite.rating}</p>
           <p>Description: {savedFavorite.description}</p>
         </div>
-      )}
+      ))}
     </div>
   );
 };

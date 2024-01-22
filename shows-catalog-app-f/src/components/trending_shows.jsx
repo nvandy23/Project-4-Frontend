@@ -1,14 +1,14 @@
 import React, { useEffect, useState } from 'react';
-import { trendingShows } from '../utilities/movies-service';
-import { saveFavorite } from '../utilities/movies-service';
-import { useAuth0 } from "@auth0/auth0-react";
-import {Link} from 'react-router-dom'; 
+import { useAuth0 } from '@auth0/auth0-react';
+import { Link } from 'react-router-dom';
+import { trendingShows, saveFavorite } from '../utilities/movies-service';
+import '../assets/index.css'; 
 
 const TrendingShowsPage = () => {
-  const { user, isAuthenticated, isLoading } = useAuth0();
+  const { user, isAuthenticated } = useAuth0();
   const [trendingShowsData, setTrendingShowsData] = useState([]);
-  const [savedFavorite, setSavedFavorite] = useState(null);
-  const [isButtonSaved, setIsButtonSaved] = useState(false);
+  const [savedFavorites, setSavedFavorites] = useState([]);
+  const [isButtonSaved, setIsButtonSaved] = useState({});
 
   useEffect(() => {
     const fetchTrendingShows = async () => {
@@ -34,15 +34,15 @@ const TrendingShowsPage = () => {
         type: "tvshow",
         userId: user.sub.toString(),
       };
-      console.log('User ID:', user.sub);
-      console.log('Show Details:', show);
 
       const savedFavorite = await saveFavorite(favoriteData);
       console.log('Favorite saved:', savedFavorite);
-      setIsButtonSaved(true);
 
-
-      setSavedFavorite(savedFavorite);
+      setSavedFavorites((prevFavorites) => [...prevFavorites, savedFavorite]);
+      setIsButtonSaved((prevButtonStatus) => ({
+        ...prevButtonStatus,
+        [show.id]: true,
+      }));
     } catch (error) {
       console.error(error);
     }
@@ -50,41 +50,45 @@ const TrendingShowsPage = () => {
 
   return (
     <div>
-        <div>
+      <div className="nav-bar">
         <Link to="/">Home</Link>
         <Link to="/trending-movies">Trending Movies</Link>
         <Link to="/profile">Profile</Link>
       </div>
       <h2>Trending Shows</h2>
-      {trendingShowsData.map((show) => (
-        <div key={show.id}>
-          <h3>Show Details:</h3>
-          <p> Show Genre: {show.media_type}</p>
-          <p>Show Name: {show.name}</p>
-          <p>Show Rating: {show.vote_average}</p>
-          <p> Show Description: {show.overview}</p>
-          <img src={`https://image.tmdb.org/t/p/w500${show.poster_path}`} alt={show.name} />
-          {isAuthenticated && user && (
-           <button onClick={() => handleSaveFavorite(show)} disabled={isButtonSaved}>
-           {isButtonSaved ? 'Saved' : 'Save'}
-         </button>
-          )}
-        </div>
-      ))}
-
-      {savedFavorite && (
-        <div>
+      <div className="card-container">
+        {trendingShowsData.map((show) => (
+          <div key={show.id} className="card">
+            <img src={`https://image.tmdb.org/t/p/w500${show.poster_path}`} alt={show.name} />
+            <p>Show Genre: {show.media_type}</p>
+            <p>Show Name: {show.name}</p>
+            <p>Show Rating: {show.vote_average}</p>
+            <p>Show Description: {show.overview}</p>
+            {isAuthenticated && user && (
+              <button onClick={() => handleSaveFavorite(show)} disabled={isButtonSaved[show.id]}>
+                {isButtonSaved[show.id] ? 'Saved' : 'Save'}
+              </button>
+            )}
+          </div>
+        ))}
+      </div>
+      {savedFavorites.map((savedFavorite) => (
+        <div key={savedFavorite.id} className="card">
           <h2>Saved Favorite</h2>
           <p>Name: {savedFavorite.name}</p>
           <p>Rating: {savedFavorite.rating}</p>
           <p>Description: {savedFavorite.description}</p>
         </div>
-      )}
+      ))}
     </div>
   );
 };
 
 export default TrendingShowsPage;
+
+
+
+
 
 
 

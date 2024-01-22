@@ -36,7 +36,6 @@ const TrendingMoviesPage = () => {
         release_date: movie.release_date,
         userId: user.sub.toString(),
       };
-      console.log('User ID:', user.sub);
 
       const savedFavorite = await saveFavorite(favoriteData);
       console.log('Favorite saved:', savedFavorite);

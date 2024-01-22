@@ -14,14 +14,13 @@ const ShowMovies = () => {
   const handleSearchMovies = async () => {
     try {
       if (!query) {
-        console.error('Query parameter is missing.');
+        console.log('Query parameter is missing.');
         return;
       }
 
       const searchResultsData = await searchMovies(query);
       const results = searchResultsData?.results;
       setSearchResults(results);
-      console.log('Search Results:', results);
     } catch (error) {
       console.error(error);
     }

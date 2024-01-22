@@ -21,7 +21,6 @@ const ShowTVShows = () => {
       const searchResultsData = await searchShows(query);
       const results = searchResultsData?.results;
       setSearchResults(results);
-      console.log('Search Results:', results);
     } catch (error) {
       console.error(error);
     }

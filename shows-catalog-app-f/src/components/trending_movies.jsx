@@ -3,7 +3,7 @@ import { trendingMovies } from '../utilities/movies-service';
 import { saveFavorite } from '../utilities/movies-service';
 import { useAuth0 } from "@auth0/auth0-react";
 import { Link } from 'react-router-dom';
-import '../../dist/assets/index.css'; 
+import '../CSS/index.css'; 
 
 const TrendingMoviesPage = () => {
   const { user, isAuthenticated } = useAuth0();

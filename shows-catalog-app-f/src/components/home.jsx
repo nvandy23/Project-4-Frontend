@@ -4,8 +4,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { useAuth0 } from "@auth0/auth0-react";
 import LoginButton from "./Auth/LoginButton";
 import LogoutButton from "./Auth/LogoutButton";
-import "../../dist/assets/homepage/NavBar.css";
-import "../../dist/assets/homepage/WelcomeContainer.css"; 
+import '../CSS/index.css';  
 
 const Home = () => {
   const { user, isAuthenticated } = useAuth0();

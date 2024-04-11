@@ -9,22 +9,22 @@ Stream Seek is a movie and TV show app designed to provide an immersive entertai
 
 ## Screenshots
 ### Profile page
-![Profile page](./shows-catalog-app-f/dist/assets/images/profile_show_page.png)
+![Profile page](./shows-catalog-app-f/dist/assets/profile_show_page.png)
 
 ### Title screen
-![Title screen](./shows-catalog-app-f/dist/assets/images/Title_screen.png)
+![Title screen](./shows-catalog-app-f/dist/assets/Title_screen.png)
 
 ### Trending movies page
-![Trending movies page](./shows-catalog-app-f/dist/assets/images/Trending_movies_page.png)
+![Trending movies page](./shows-catalog-app-f/dist/assets/Trending_movies_page.png)
 
 ### Trending shows page
-![Trending shows page](./shows-catalog-app-f/dist/assets/images/Trending_shows_page.png)
+![Trending shows page](./shows-catalog-app-f/dist/assets/Trending_shows_page.png)
 
 ### Search shows
-![Search shows](./shows-catalog-app-f/dist/assets/images/search_shows.png)
+![Search shows](./shows-catalog-app-f/dist/assets/search_shows.png)
 
 ### Search movies
-![Search movies](./shows-catalog-app-f/dist/assets/images/search_movies.png)
+![Search movies](./shows-catalog-app-f/dist/assets/search_movies.png)
 
 # Technologies used:
 - Node.js

@@ -9,7 +9,7 @@ Stream Seek is a movie and TV show app designed to provide an immersive entertai
 
 ## Screenshots
 ### Profile page
-![Profile page](./shows-catalog-app-f/dist/assets/images/profile_show_page.png)
+![Profile page](./shows-catalog-app-f/dist/assets/profile_show_page.png)
 
 ### Title screen
 ![Title screen](./shows-catalog-app-f/dist/assets/images/Title_screen.png)
